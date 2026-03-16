@@ -1,0 +1,72 @@
+Calculadora com autenticação (aula38.py)
+
+Este programa em Python implementa uma calculadora simples protegida por autenticação. Inicialmente, o utilizador deve introduzir o nome de acesso, tendo até três tentativas para acertar. Caso o nome seja introduzido corretamente, o programa solicita a senha, também com um limite de três tentativas. Se o utilizador exceder esse limite em qualquer uma das etapas, o sistema apresenta a mensagem de acesso negado e termina.
+
+Após a autenticação bem-sucedida, o utilizador tem acesso a uma calculadora interativa que funciona em um ciclo while. Nela, o utilizador pode introduzir dois números e escolher a operação matemática desejada (adição, subtração, multiplicação ou divisão). O programa calcula o resultado e apresenta a mensagem indicando o tipo de operação realizada e o valor obtido. No final de cada cálculo, o utilizador pode decidir continuar a utilizar a calculadora ou sair do programa.
+
+Código:
+tentativas_nome = 0
+
+while tentativas_nome < 3:
+    nome = input('Digite seu nome: ')
+
+    if nome == 'Manuel':
+        print('Bem-vindo, Manuel!')
+        break
+    else:
+        tentativas_nome += 1
+        print('Nome incorreto!')
+
+if tentativas_nome == 3:
+    print('Nome incorreto, acesso negado!')
+else:
+    # verificação da senha
+    tentativas_senha = 0
+
+    while tentativas_senha < 3:
+        senha = input('Digite a senha: ')
+
+        if senha == 'figueiredo':
+            print('Senha correta, acesso concedido!')
+            print('Vamos usar a calculadora, Manuel!')
+            break
+        else:
+            tentativas_senha += 1
+            print('Senha incorreta!')
+
+    if tentativas_senha == 3:
+        print('Senha incorreta, acesso negado!')
+    else:
+        while True:
+            # codigo da calculadora
+            num1 = float(input('Digite o primeiro número: '))
+            num2 = float(input('Digite o segundo número: '))
+            operacao = input('Digite a operação (+, -, *, /): ')
+
+            if operacao == '+':
+                resultado = num1 + num2
+                tipo_operacao = 'soma'
+
+            elif operacao == '-':
+                resultado = num1 - num2
+                tipo_operacao = 'subtração'
+
+            elif operacao == '*':
+                resultado = num1 * num2
+                tipo_operacao = 'multiplicação'
+
+            elif operacao == '/':
+                resultado = num1 / num2
+                tipo_operacao = 'divisão'
+
+            else:
+                print('Operação inválida!')
+                continue
+
+            print(f'A {tipo_operacao} de {num1} e {num2} tem como resultado: {resultado}')
+
+            sair = input('Deseja sair? (s/n) ').lower().startswith('s')
+
+            if sair:
+                print('Programa terminado com sucesso...')
+                break
